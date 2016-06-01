@@ -1167,7 +1167,11 @@
     _addReference: function(model, options) {
       this._byId[model.cid] = model;
       var id = this.modelId(model.attributes);
-      if (id != null) this._byId[id] = model;
+      if (id != null) {
+        this._byId[id] = model;
+      } else if(model.id != null) {
+        this._byId[model.id] = model;
+      };
       model.on('all', this._onModelEvent, this);
     },
 
